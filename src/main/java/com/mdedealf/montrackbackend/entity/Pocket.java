@@ -8,6 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pocket {
-
-    private int pocketId;
+    private Long pocketId;
 }
