@@ -61,4 +61,15 @@ public class Users {
 
     @Column(name = "created_at")
     private ZonedDateTime deletedAt;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = ZonedDateTime.now();
+        this.updatedAt = ZonedDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = ZonedDateTime.now();
+    }
 }
