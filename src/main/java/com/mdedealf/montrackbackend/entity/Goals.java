@@ -18,8 +18,9 @@ import java.time.ZonedDateTime;
 public class Goals {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "goal_id", nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "goal_id_gen")
+    @SequenceGenerator(name = "goal_id_gen", sequenceName = "goals_goal_id_seq", allocationSize = 1)
+    @Column(name = "goal_id", nullable = false)
     private Long goalId;
 
     @NotNull
