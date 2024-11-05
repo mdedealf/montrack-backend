@@ -14,12 +14,12 @@ import java.time.ZonedDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "wallet", schema = "montrack")
+@Table(name = "wallets", schema = "montrack")
 public class Wallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wallet_id_gen")
-    @SequenceGenerator(name = "wallet_id_gen", sequenceName = "wallet_wallet_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "wallet_id_gen", sequenceName = "wallets_wallet_id_seq", allocationSize = 1)
     @Column(name = "wallet_id", nullable = false)
     private Long walletId;
 
