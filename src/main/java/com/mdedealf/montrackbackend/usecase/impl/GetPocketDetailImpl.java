@@ -1,6 +1,6 @@
 package com.mdedealf.montrackbackend.usecase.impl;
 
-import com.mdedealf.montrackbackend.entity.Pocket;
+import com.mdedealf.montrackbackend.entity.Pockets;
 import com.mdedealf.montrackbackend.usecase.GetPocketDetail;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ public class GetPocketDetailImpl implements GetPocketDetail {
 
 
     @Override
-    public List<Pocket> getPocket() {
+    public List<Pockets> getPocket() {
         return List.of();
     }
 }

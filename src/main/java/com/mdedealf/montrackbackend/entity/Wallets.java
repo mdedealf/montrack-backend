@@ -2,6 +2,7 @@ package com.mdedealf.montrackbackend.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,40 +14,31 @@ import java.time.ZonedDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "pockets", schema = "montrack")
-public class Pocket {
+@Table(name = "wallets", schema = "montrack")
+public class Wallets {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pocket_id_gen")
-    @SequenceGenerator(name = "pocket_id_gen", sequenceName = "pockets_pocket_id_seq", allocationSize = 1)
-    @Column(name = "pocket_id", nullable = false)
-    private Long pocketId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wallet_id_gen")
+    @SequenceGenerator(name = "wallet_id_gen", sequenceName = "wallets_wallet_id_seq", allocationSize = 1)
+    @Column(name = "wallet_id", nullable = false)
+    private Long walletId;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "wallet_id", nullable = false)
-    private Wallet wallet;
+    @JoinColumn(name = "user_id")
+    private Users user;
 
     @NotNull
-    @Size(max = 100)
-    @Column(name = "name", nullable = false, length = 100)
+    @Size(max = 150)
+    @Column(name = "name" , nullable = false, length = 150)
     private String name;
 
-    @Size(max = 150)
-    @Column(name = "description", length = 150)
-    private String description;
-
-    @Size(max = 20)
-    @Column(name = "emoji_code", length = 20)
-    private String emojiCode;
+    @NotNull
+    @Column(name = "amount", nullable = false)
+    private BigDecimal amount;
 
     @NotNull
-    @Column(name = "total_amount", nullable = false)
-    private BigDecimal totalAmount;
-
-    @NotNull
-    @Column(name = "current_amount", nullable = false)
-    private Double currentAmount;
+    @Column(name = "isActive", nullable = false)
+    private boolean isActive;
 
     @NotNull
     @ColumnDefault("CURRENT_TIMESTAMP")

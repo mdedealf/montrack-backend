@@ -1,9 +1,9 @@
 package com.mdedealf.montrackbackend.usecase;
 
-import com.mdedealf.montrackbackend.entity.Pocket;
+import com.mdedealf.montrackbackend.entity.Pockets;
 
 import java.util.List;
 
 public interface GetPocketDetail {
-    List<Pocket> getPocket();
+    List<Pockets> getPocket();
 }
