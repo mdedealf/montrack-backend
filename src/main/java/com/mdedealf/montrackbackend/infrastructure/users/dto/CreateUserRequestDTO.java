@@ -1,6 +1,6 @@
 package com.mdedealf.montrackbackend.infrastructure.users.dto;
 
-import com.mdedealf.montrackbackend.entity.Role;
+import com.mdedealf.montrackbackend.entity.Roles;
 import com.mdedealf.montrackbackend.entity.Users;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,19 +13,21 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateUserRequestDTO {
+    private String fullName;
     private String email;
-    private String password;
+    private String passwordHash;
+    private String profilePicture;
     private String pin;
-    private String profilePictureUrl;
 
     public Users toEntity() {
         Users user = new Users();
+        user.setFullName(fullName);
         user.setEmail(email);
-        user.setPasswordHash(password);
+        user.setPasswordHash(passwordHash);
         user.setPin(pin);
-        user.setProfilePicture(profilePictureUrl);
+        user.setProfilePicture(profilePicture);
         user.setOnboardingCompleted(false);
-        Set<Role> roles = new HashSet<>();
+        Set<Roles> roles = new HashSet<>();
         user.setRoles(roles);
         return user;
     }

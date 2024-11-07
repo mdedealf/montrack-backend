@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface GetUsersUsecase {
     List<Users> getAllUsers();
-    Users getUserById(int id);
+    Users getUserById(Long id);
 }

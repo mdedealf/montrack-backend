@@ -26,6 +26,9 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+// import javax.crypto.SecretKey;
+// import javax.crypto.spec.SecretKeySpec;
+
 @Log
 @Configuration
 @EnableWebSecurity
@@ -36,16 +39,17 @@ public class SecurityConfig {
     private final PasswordEncoder passwordEncoder;
     private final RsaKeyConfigProperties rsaKeyConfigProperties;
 
-    public SecurityConfig (GetUserAuthDetailsUsecase getUserAuthDetailsUsecase, JwtConfigProperties jwtConfigProperties, RsaKeyConfigProperties rsaKeyConfigProperties, PasswordEncoder passwordEncoder) {
+    public SecurityConfig(GetUserAuthDetailsUsecase getUserAuthDetailsUsecase, JwtConfigProperties jwtConfigProperties, PasswordEncoder passwordEncoder, RsaKeyConfigProperties rsaKeyConfigProperties) {
         this.getUserAuthDetailsUsecase = getUserAuthDetailsUsecase;
         this.jwtConfigProperties = jwtConfigProperties;
         this.passwordEncoder = passwordEncoder;
         this.rsaKeyConfigProperties = rsaKeyConfigProperties;
+
+        log.info("Secret: " + jwtConfigProperties.getSecret());
     }
 
     @Bean
     public AuthenticationManager authManager() {
-        // Because we dont use third party provider, and the data comes from DB then we use DAO
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(getUserAuthDetailsUsecase);
         authProvider.setPasswordEncoder(passwordEncoder);
@@ -92,6 +96,19 @@ public class SecurityConfig {
                 .userDetailsService(getUserAuthDetailsUsecase)
                 .build();
     }
+
+//  @Bean
+//  public JwtDecoder jwtDecoder() {
+//    SecretKey originalKey = new SecretKeySpec(jwtConfigProperties.getSecret().getBytes(), "HmacSHA256");
+//    return NimbusJwtDecoder.withSecretKey(originalKey).build();
+//  }
+//
+//  @Bean
+//  public JwtEncoder jwtEncoder() {
+//      SecretKey key = new SecretKeySpec(jwtConfigProperties.getSecret().getBytes(), "HmacSHA256");
+//    JWKSource<SecurityContext> immutableSecret = new ImmutableSecret<SecurityContext>(key);
+//    return new NimbusJwtEncoder(immutableSecret);
+//  }
 
     @Bean
     public JwtDecoder jwtDecoder() {

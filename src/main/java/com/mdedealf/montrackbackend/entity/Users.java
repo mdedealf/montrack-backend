@@ -12,6 +12,7 @@ import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,8 +20,7 @@ import java.util.Set;
 public class Users {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_id_gen")
-    @SequenceGenerator(name = "user_id_gen", sequenceName = "users_user_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
@@ -61,12 +61,12 @@ public class Users {
     @Column(name = "updated_at", nullable = false)
     private ZonedDateTime updatedAt;
 
-    @Column(name = "created_at")
+    @Column(name = "deleted_at")
     private ZonedDateTime deletedAt;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    private Set<Roles> roles = new HashSet<>();
 
     @PrePersist
     public void prePersist() {

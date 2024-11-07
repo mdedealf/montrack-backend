@@ -5,12 +5,10 @@ import com.mdedealf.montrackbackend.entity.Users;
 import com.mdedealf.montrackbackend.infrastructure.users.dto.UserAuth;
 import com.mdedealf.montrackbackend.infrastructure.users.repository.UsersRepository;
 import com.mdedealf.montrackbackend.usecase.auth.GetUserAuthDetailsUsecase;
-import lombok.extern.java.Log;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Log
 @Service
 public class GetUserAuthDetailsUsecaseImpl implements GetUserAuthDetailsUsecase {
     private final UsersRepository usersRepository;

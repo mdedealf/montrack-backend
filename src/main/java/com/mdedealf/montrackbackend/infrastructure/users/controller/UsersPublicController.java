@@ -32,8 +32,8 @@ public class UsersPublicController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUser(@PathVariable final Long userId) {
-        return ApiResponse.successfulResponse("Get user details success", getUsersUsecase.getUserById(userId));
+    public ResponseEntity<?> getUser(@PathVariable final Long id) {
+        return ApiResponse.successfulResponse("Get user details success", getUsersUsecase.getUserById(id));
     }
 
     @PostMapping("/register")

@@ -11,6 +11,7 @@ import org.hibernate.annotations.ColumnDefault;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -59,7 +60,7 @@ public class Goals {
     @Column(name = "updated_at", nullable = false)
     private ZonedDateTime updatedAt;
 
-    @Column(name = "created_at")
+    @Column(name = "deleted_at")
     private ZonedDateTime deletedAt;
 
     @PrePersist

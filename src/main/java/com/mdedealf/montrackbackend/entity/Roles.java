@@ -10,10 +10,12 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.time.OffsetDateTime;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Role {
+@Table(name = "roles", schema = "montrack")
+public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roles_id_gen")
     @SequenceGenerator(name = "role_id_gen", sequenceName = "roles_role_id_seq", allocationSize = 1)
